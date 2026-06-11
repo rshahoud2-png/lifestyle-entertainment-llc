@@ -3,6 +3,16 @@ import { createRoot } from 'react-dom/client';
 import { ArrowUpRight, CalendarDays, Disc3, Mail, MapPin, Music2, Sparkles, Star, UsersRound } from 'lucide-react';
 import './styles.css';
 
+const wixMedia = {
+  hero: 'https://static.wixstatic.com/media/b0bbc9_ddaae8d400114763af7f8fd6b90cd310~mv2.jpg',
+  logo: 'https://static.wixstatic.com/media/0da768_863eb85f0dd04fe9b4ea3d5372da3b25~mv2.png',
+  solutions: 'https://static.wixstatic.com/media/11062b_b0567c877fda4a66ad4037866f93473d~mv2.jpg',
+  eventA: 'https://static.wixstatic.com/media/b0bbc9_00e4b7da2d7540c1afee12fab6943dbbf000.jpg',
+  eventB: 'https://static.wixstatic.com/media/b0bbc9_363fb77b179b4aaaac460c5b3eda62dff000.jpg',
+  eventC: 'https://static.wixstatic.com/media/b0bbc9_4b16517247f94385aa5eff8db3976a4bf000.jpg',
+  eventD: 'https://static.wixstatic.com/media/b0bbc9_7f29f9ac47da4e9f8704a792feea59baf000.jpg'
+};
+
 const services = [
   {
     title: 'Entertainment',
@@ -26,24 +36,30 @@ const services = [
   }
 ];
 
-const events = [
+const showcases = [
   {
-    eyebrow: 'Latest event',
+    eyebrow: 'Latest Event',
     title: 'Cursed Beats: our latest event with the best DJ in PA, DJ Eli.',
-    image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80',
+    image: wixMedia.eventA,
     tags: ['DJ Eli', 'PA nightlife', 'Event planning']
   },
   {
-    eyebrow: 'Featured theme',
+    eyebrow: 'Featured Theme',
     title: 'In Valentine: The Art Of Entertainment.',
-    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=80',
+    image: wixMedia.eventB,
     tags: ['Entertainment', 'Atmosphere', 'Celebration']
   },
   {
-    eyebrow: 'Registration',
-    title: 'Event details and registration with doors open information.',
-    image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1400&q=80',
-    tags: ['Event details', 'Guest flow', 'Doors open']
+    eyebrow: 'Guest Flow',
+    title: 'Event details and registration built around doors-open energy.',
+    image: wixMedia.eventC,
+    tags: ['Registration', 'Doors open', 'Guest flow']
+  },
+  {
+    eyebrow: 'LifeStyle Media',
+    title: 'Real visuals from the original LifeStyle Entertainment site.',
+    image: wixMedia.eventD,
+    tags: ['Media', 'Promotion', 'Brand presence']
   }
 ];
 
@@ -62,6 +78,37 @@ const solutions = [
   }
 ];
 
+function useScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? window.scrollY / max : 0);
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    return () => window.removeEventListener('scroll', updateProgress);
+  }, []);
+
+  return progress;
+}
+
+function PointerGlow() {
+  useEffect(() => {
+    const update = (event) => {
+      document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
+    };
+
+    window.addEventListener('pointermove', update, { passive: true });
+    return () => window.removeEventListener('pointermove', update);
+  }, []);
+
+  return <div className="pointer-glow" aria-hidden="true" />;
+}
+
 function StageCanvas() {
   const canvasRef = useRef(null);
 
@@ -76,12 +123,12 @@ function StageCanvas() {
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      particles = Array.from({ length: 42 }, (_, index) => ({
+      particles = Array.from({ length: 58 }, (_, index) => ({
         x: Math.random() * canvas.offsetWidth,
         y: Math.random() * canvas.offsetHeight,
-        radius: 1 + Math.random() * 3,
-        speed: 0.12 + Math.random() * 0.35,
-        phase: index * 0.35
+        radius: 1 + Math.random() * 4,
+        speed: 0.16 + Math.random() * 0.45,
+        phase: index * 0.42
       }));
     };
 
@@ -90,21 +137,21 @@ function StageCanvas() {
       const height = canvas.offsetHeight;
       context.clearRect(0, 0, width, height);
 
-      const sweep = context.createRadialGradient(width * 0.5, height * 0.25, 10, width * 0.5, height * 0.28, width * 0.9);
-      sweep.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
-      sweep.addColorStop(0.32, 'rgba(224, 46, 86, 0.15)');
-      sweep.addColorStop(0.62, 'rgba(255, 193, 7, 0.08)');
+      const sweep = context.createRadialGradient(width * 0.54, height * 0.28, 20, width * 0.52, height * 0.32, width * 0.82);
+      sweep.addColorStop(0, 'rgba(255, 255, 255, 0.24)');
+      sweep.addColorStop(0.26, 'rgba(255, 49, 95, 0.2)');
+      sweep.addColorStop(0.58, 'rgba(255, 194, 71, 0.1)');
       sweep.addColorStop(1, 'rgba(0, 0, 0, 0)');
       context.fillStyle = sweep;
       context.fillRect(0, 0, width, height);
 
       particles.forEach((particle) => {
         particle.y -= particle.speed;
-        particle.x += Math.sin(time * 0.001 + particle.phase) * 0.18;
-        if (particle.y < -10) particle.y = height + 10;
+        particle.x += Math.sin(time * 0.001 + particle.phase) * 0.3;
+        if (particle.y < -12) particle.y = height + 12;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        context.fillStyle = 'rgba(255, 255, 255, 0.48)';
+        context.fillStyle = 'rgba(255, 255, 255, 0.46)';
         context.fill();
       });
 
@@ -125,29 +172,21 @@ function StageCanvas() {
 }
 
 function App() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const updateProgress = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? window.scrollY / max : 0);
-    };
-
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    return () => window.removeEventListener('scroll', updateProgress);
-  }, []);
+  const progress = useScrollProgress();
 
   return (
     <main>
+      <PointerGlow />
       <div className="progress" style={{ transform: `scaleX(${progress})` }} />
+
       <header className="site-header" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="LifeStyle Entertainment home">
-          <span>LE</span>
+          <img src={wixMedia.logo} alt="LifeStyle Entertainment" />
           <strong>LifeStyle Entertainment</strong>
         </a>
         <nav>
           <a href="#services">Services</a>
+          <a href="#events">Events</a>
           <a href="#about">About</a>
           <a href="#solutions">Solutions</a>
           <a href="#contact">Contact</a>
@@ -156,23 +195,19 @@ function App() {
 
       <section id="top" className="hero section-dark">
         <StageCanvas />
-        <div className="hero-media" />
+        <img className="hero-media" src={wixMedia.hero} alt="LifeStyle Entertainment event visual" />
         <div className="hero-content">
           <p className="kicker">LifeStyle Entertainment | Event planning</p>
-          <h1>Promote and plan events.</h1>
+          <h1><span>Promote</span><span>and plan</span><span>events.</span></h1>
           <p className="hero-copy">
             Looking for top-notch entertainment for your next event? LifeStyle Entertainment brings performers, musicians, DJs, venues, catering, and planning support together for occasions that feel complete.
           </p>
           <div className="hero-actions">
-            <a className="button primary" href="#contact">
-              Contact us <ArrowUpRight size={18} />
-            </a>
-            <a className="button ghost" href="#events">
-              View events
-            </a>
+            <a className="button primary" href="#contact">Contact us <ArrowUpRight size={18} /></a>
+            <a className="button ghost" href="#events">View events</a>
           </div>
         </div>
-        <div className="hero-meta" aria-label="Company strengths">
+        <div className="hero-orbit" aria-hidden="true">
           <span>Events</span>
           <span>DJs</span>
           <span>Venues</span>
@@ -180,22 +215,31 @@ function App() {
         </div>
       </section>
 
+      <div className="marquee" aria-hidden="true">
+        <div>
+          <span>The Art Of Entertainment</span>
+          <span>Promote and Plan Events</span>
+          <span>Cursed Beats</span>
+          <span>LifeStyle Solutions</span>
+        </div>
+      </div>
+
       <section className="intro section-light" aria-labelledby="intro-title">
         <p className="section-label">What we do</p>
-        <h2 id="intro-title">The art of entertainment, planned with care.</h2>
+        <h2 id="intro-title">The original content, rebuilt as a richer digital experience.</h2>
         <p>
-          LifeStyle Entertainment supports events from concept to execution, combining creative planning with the practical details that make guests feel taken care of.
+          The Wix site’s event planning, services, about, contact, and LifeStyle Solutions content now lives in GitHub with real media from the source site and a more immersive interaction layer.
         </p>
       </section>
 
       <section id="services" className="services section-light" aria-labelledby="services-title">
         <div className="section-heading">
           <p className="section-label">Services</p>
-          <h2 id="services-title">Entertainment, venues, catering, and event planning.</h2>
+          <h2 id="services-title">Entertainment, venue selection, catering, and event planning.</h2>
         </div>
         <div className="service-grid">
           {services.map(({ title, copy, icon: Icon }) => (
-            <article className="service-card" key={title}>
+            <article className="service-card kinetic-card" key={title}>
               <Icon size={28} />
               <h3>{title}</h3>
               <p>{copy}</p>
@@ -204,20 +248,16 @@ function App() {
         </div>
       </section>
 
-      <section id="events" className="experience section-dark" aria-labelledby="events-title">
-        <div className="section-heading split">
-          <div>
-            <p className="section-label">Events</p>
-            <h2 id="events-title">Featured moments from the LifeStyle site.</h2>
-          </div>
-          <p>
-            The original site highlights event promotion, registration, and themed entertainment moments including Cursed Beats and In Valentine.
-          </p>
+      <section id="events" className="showcase section-dark" aria-labelledby="events-title">
+        <div className="sticky-copy">
+          <p className="section-label">Events</p>
+          <h2 id="events-title">Media-led moments from the LifeStyle site.</h2>
+          <p>The old site had the pieces. This version gives them movement, scale, and a reason to keep scrolling.</p>
         </div>
-        <div className="experience-list">
-          {events.map((item) => (
-            <article className="experience-card" key={item.eyebrow}>
-              <img src={item.image} alt="Live event atmosphere" loading="lazy" />
+        <div className="showcase-rail">
+          {showcases.map((item, index) => (
+            <article className="showcase-card" key={item.eyebrow} style={{ '--offset': index }}>
+              <img src={item.image} alt={item.title} loading={index === 0 ? 'eager' : 'lazy'} />
               <div>
                 <p className="eyebrow">{item.eyebrow}</p>
                 <h3>{item.title}</h3>
@@ -230,36 +270,21 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="process section-light" aria-labelledby="about-title">
-        <div className="section-heading split">
-          <div>
-            <p className="section-label">About Us</p>
-            <h2 id="about-title">Experienced and creative professionals.</h2>
-          </div>
+      <section id="about" className="about section-light" aria-labelledby="about-title">
+        <div className="about-media">
+          <img src={wixMedia.eventD} alt="LifeStyle Entertainment visual from original website" loading="lazy" />
+        </div>
+        <div>
+          <p className="section-label">About Us</p>
+          <h2 id="about-title">Experienced and creative professionals.</h2>
           <p>
             At LifeStyle Entertainment, we have a team of experienced and creative professionals who are dedicated to making your event a success. Our team consists of event planners, designers, and coordinators who work together to bring your vision to life. We are passionate about what we do and we strive to exceed your expectations at every stage of the planning process.
           </p>
         </div>
-        <div className="process-grid">
-          <article>
-            <UsersRound size={26} />
-            <h3>Planning team</h3>
-            <p>Event planners, designers, and coordinators work together around the same vision.</p>
-          </article>
-          <article>
-            <Disc3 size={26} />
-            <h3>Entertainment network</h3>
-            <p>Performers, musicians, DJs, magicians, live bands, and photo booth options for different occasions.</p>
-          </article>
-          <article>
-            <Sparkles size={26} />
-            <h3>Guest experience</h3>
-            <p>Venue, food, timing, and entertainment details are planned to keep guests satisfied and impressed.</p>
-          </article>
-        </div>
       </section>
 
-      <section id="solutions" className="services section-dark" aria-labelledby="solutions-title">
+      <section id="solutions" className="solutions section-dark" aria-labelledby="solutions-title">
+        <img className="solutions-media" src={wixMedia.solutions} alt="LifeStyle Solutions visual" loading="lazy" />
         <div className="section-heading split">
           <div>
             <p className="section-label">LifeStyle Solutions</p>
@@ -269,12 +294,12 @@ function App() {
             Welcome to LifeStyle Solutions, where we help you grow your online business like never before. With digital services, you can take your online presence to the next level, attracting more customers and increasing revenue.
           </p>
         </div>
-        <div className="service-grid dark-grid">
+        <div className="solution-list">
           {solutions.map((solution) => (
-            <article className="service-card dark-card" key={solution.title}>
-              <ArrowUpRight size={28} />
-              <h3>{solution.title}</h3>
+            <article className="solution-row" key={solution.title}>
+              <span>{solution.title}</span>
               <p>{solution.copy}</p>
+              <ArrowUpRight size={24} />
             </article>
           ))}
         </div>
@@ -284,20 +309,12 @@ function App() {
         <div>
           <p className="section-label">Contact Us</p>
           <h2 id="contact-title">Get in touch.</h2>
-          <p>
-            Looking for top-notch entertainment for your next event? Contact LifeStyle Entertainment today for any question about events or any service request.
-          </p>
+          <p>Looking for top-notch entertainment for your next event? Contact LifeStyle Entertainment today for any question about events or any service request.</p>
         </div>
         <div className="contact-panel">
-          <a href="mailto:info@lifestyleentertainmentllc.com">
-            <Mail size={20} /> info@lifestyleentertainmentllc.com
-          </a>
-          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/contact-2" target="_blank" rel="noreferrer">
-            <ArrowUpRight size={20} /> Current contact page
-          </a>
-          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/event-details" target="_blank" rel="noreferrer">
-            <CalendarDays size={20} /> Event details and registration
-          </a>
+          <a href="mailto:info@lifestyleentertainmentllc.com"><Mail size={20} /> info@lifestyleentertainmentllc.com</a>
+          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/contact-2" target="_blank" rel="noreferrer"><ArrowUpRight size={20} /> Current contact page</a>
+          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/event-details" target="_blank" rel="noreferrer"><CalendarDays size={20} /> Event details and registration</a>
           <span><MapPin size={20} /> Available for event planning and service requests</span>
         </div>
       </section>
