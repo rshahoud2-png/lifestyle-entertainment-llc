@@ -5,45 +5,60 @@ import './styles.css';
 
 const services = [
   {
-    title: 'Private Celebrations',
-    copy: 'Birthdays, graduations, weddings, and milestone nights shaped with crisp production and warm hospitality.',
-    icon: Sparkles
-  },
-  {
-    title: 'Nightlife Experiences',
-    copy: 'Club nights, lounges, pop-ups, and weekend programs with the right sound, flow, and room energy.',
-    icon: Disc3
-  },
-  {
-    title: 'Talent and Music',
-    copy: 'DJ coordination, artist moments, hosting, and live entertainment that keep the room moving.',
+    title: 'Entertainment',
+    copy: "Entertainment is a key component of any event. LifeStyle Entertainment has an extensive network of performers, musicians, and DJs to suit any occasion, from live bands and magicians to photo booth moments.",
     icon: Music2
   },
   {
-    title: 'Brand Events',
-    copy: 'Launches, community activations, and sponsor-friendly events designed to feel elevated and memorable.',
+    title: 'Venue Selection',
+    copy: 'Finding the perfect venue can make all the difference in creating a successful event. The team works with you to find an ideal location that fits your budget and style, from intimate spaces to grand ballrooms.',
     icon: Star
+  },
+  {
+    title: 'Catering',
+    copy: "Food is an essential part of any event. The catering team helps create a customized menu that reflects your tastes and preferences, from hors d'oeuvres to desserts.",
+    icon: Sparkles
+  },
+  {
+    title: 'Promote and Plan Events',
+    copy: 'LifeStyle Entertainment brings planning, promotion, entertainment, venue support, and event-day coordination together so your occasion feels polished from first invite to final song.',
+    icon: CalendarDays
   }
 ];
 
-const experiences = [
+const events = [
   {
-    eyebrow: '01 / Signature Night',
-    title: 'A room that feels designed from the first arrival.',
+    eyebrow: 'Latest event',
+    title: 'Cursed Beats: our latest event with the best DJ in PA, DJ Eli.',
     image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80',
-    tags: ['Venue direction', 'Guest flow', 'Music programming']
+    tags: ['DJ Eli', 'PA nightlife', 'Event planning']
   },
   {
-    eyebrow: '02 / Social Moment',
-    title: 'Entertainment that gives people something to talk about.',
+    eyebrow: 'Featured theme',
+    title: 'In Valentine: The Art Of Entertainment.',
     image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=80',
-    tags: ['DJ booking', 'Lighting mood', 'VIP details']
+    tags: ['Entertainment', 'Atmosphere', 'Celebration']
   },
   {
-    eyebrow: '03 / Brand Energy',
-    title: 'A polished atmosphere for launches and local culture.',
+    eyebrow: 'Registration',
+    title: 'Event details and registration with doors open information.',
     image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1400&q=80',
-    tags: ['Production plan', 'Creative direction', 'Audience experience']
+    tags: ['Event details', 'Guest flow', 'Doors open']
+  }
+];
+
+const solutions = [
+  {
+    title: 'Website Design',
+    copy: 'A professional and visually appealing website tailored to your business needs, using current design trends and technologies to create a user-friendly and responsive online presence.'
+  },
+  {
+    title: 'Graphic Design',
+    copy: 'Creative digital assets that help your brand, promotion, or event look sharp across social media, announcements, and campaigns.'
+  },
+  {
+    title: 'Instagram',
+    copy: 'Social content support that helps you grow your online business, attract more customers, and increase revenue.'
   }
 ];
 
@@ -127,13 +142,14 @@ function App() {
     <main>
       <div className="progress" style={{ transform: `scaleX(${progress})` }} />
       <header className="site-header" aria-label="Main navigation">
-        <a className="brand" href="#top" aria-label="Lifestyle Entertainment home">
+        <a className="brand" href="#top" aria-label="LifeStyle Entertainment home">
           <span>LE</span>
-          <strong>Lifestyle Entertainment LLC</strong>
+          <strong>LifeStyle Entertainment</strong>
         </a>
         <nav>
           <a href="#services">Services</a>
-          <a href="#work">Experiences</a>
+          <a href="#about">About</a>
+          <a href="#solutions">Solutions</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
@@ -142,42 +158,40 @@ function App() {
         <StageCanvas />
         <div className="hero-media" />
         <div className="hero-content">
-          <p className="kicker">Lifestyle led events and entertainment</p>
-          <h1>
-            Create the night people remember.
-          </h1>
+          <p className="kicker">LifeStyle Entertainment | Event planning</p>
+          <h1>Promote and plan events.</h1>
           <p className="hero-copy">
-            Lifestyle Entertainment LLC plans polished celebrations, nightlife moments, talent-driven events, and brand experiences with atmosphere, rhythm, and detail.
+            Looking for top-notch entertainment for your next event? LifeStyle Entertainment brings performers, musicians, DJs, venues, catering, and planning support together for occasions that feel complete.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#contact">
-              Plan an event <ArrowUpRight size={18} />
+              Contact us <ArrowUpRight size={18} />
             </a>
-            <a className="button ghost" href="#work">
-              Explore the vibe
+            <a className="button ghost" href="#events">
+              View events
             </a>
           </div>
         </div>
         <div className="hero-meta" aria-label="Company strengths">
           <span>Events</span>
-          <span>Music</span>
-          <span>Production</span>
-          <span>Culture</span>
+          <span>DJs</span>
+          <span>Venues</span>
+          <span>Catering</span>
         </div>
       </section>
 
       <section className="intro section-light" aria-labelledby="intro-title">
         <p className="section-label">What we do</p>
-        <h2 id="intro-title">We turn a good plan into a full-room feeling.</h2>
+        <h2 id="intro-title">The art of entertainment, planned with care.</h2>
         <p>
-          From the first invite to the last song, every detail is shaped around how guests move, connect, celebrate, and remember the moment.
+          LifeStyle Entertainment supports events from concept to execution, combining creative planning with the practical details that make guests feel taken care of.
         </p>
       </section>
 
       <section id="services" className="services section-light" aria-labelledby="services-title">
         <div className="section-heading">
           <p className="section-label">Services</p>
-          <h2 id="services-title">Entertainment built around the room.</h2>
+          <h2 id="services-title">Entertainment, venues, catering, and event planning.</h2>
         </div>
         <div className="service-grid">
           {services.map(({ title, copy, icon: Icon }) => (
@@ -190,20 +204,20 @@ function App() {
         </div>
       </section>
 
-      <section id="work" className="experience section-dark" aria-labelledby="experience-title">
+      <section id="events" className="experience section-dark" aria-labelledby="events-title">
         <div className="section-heading split">
           <div>
-            <p className="section-label">Experiences</p>
-            <h2 id="experience-title">Premium pace. Local energy. Real presence.</h2>
+            <p className="section-label">Events</p>
+            <h2 id="events-title">Featured moments from the LifeStyle site.</h2>
           </div>
           <p>
-            Inspired by cinematic digital storytelling, this site presents Lifestyle Entertainment as a modern event partner with strong visual impact and clear booking momentum.
+            The original site highlights event promotion, registration, and themed entertainment moments including Cursed Beats and In Valentine.
           </p>
         </div>
         <div className="experience-list">
-          {experiences.map((item) => (
+          {events.map((item) => (
             <article className="experience-card" key={item.eyebrow}>
-              <img src={item.image} alt="Crowd and live event atmosphere" loading="lazy" />
+              <img src={item.image} alt="Live event atmosphere" loading="lazy" />
               <div>
                 <p className="eyebrow">{item.eyebrow}</p>
                 <h3>{item.title}</h3>
@@ -216,49 +230,75 @@ function App() {
         </div>
       </section>
 
-      <section className="process section-light" aria-labelledby="process-title">
-        <div className="section-heading">
-          <p className="section-label">How it works</p>
-          <h2 id="process-title">A clean path from idea to event night.</h2>
+      <section id="about" className="process section-light" aria-labelledby="about-title">
+        <div className="section-heading split">
+          <div>
+            <p className="section-label">About Us</p>
+            <h2 id="about-title">Experienced and creative professionals.</h2>
+          </div>
+          <p>
+            At LifeStyle Entertainment, we have a team of experienced and creative professionals who are dedicated to making your event a success. Our team consists of event planners, designers, and coordinators who work together to bring your vision to life. We are passionate about what we do and we strive to exceed your expectations at every stage of the planning process.
+          </p>
         </div>
         <div className="process-grid">
           <article>
-            <CalendarDays size={26} />
-            <h3>Define the occasion</h3>
-            <p>We clarify the guest list, date, venue needs, budget range, and the feeling the event should carry.</p>
+            <UsersRound size={26} />
+            <h3>Planning team</h3>
+            <p>Event planners, designers, and coordinators work together around the same vision.</p>
           </article>
           <article>
-            <UsersRound size={26} />
-            <h3>Shape the experience</h3>
-            <p>Music, talent, timing, hosting, room layout, and service details come together as one plan.</p>
+            <Disc3 size={26} />
+            <h3>Entertainment network</h3>
+            <p>Performers, musicians, DJs, magicians, live bands, and photo booth options for different occasions.</p>
           </article>
           <article>
             <Sparkles size={26} />
-            <h3>Deliver the moment</h3>
-            <p>On event day, the focus is simple: smooth flow, happy guests, and a night that lands.</p>
+            <h3>Guest experience</h3>
+            <p>Venue, food, timing, and entertainment details are planned to keep guests satisfied and impressed.</p>
           </article>
+        </div>
+      </section>
+
+      <section id="solutions" className="services section-dark" aria-labelledby="solutions-title">
+        <div className="section-heading split">
+          <div>
+            <p className="section-label">LifeStyle Solutions</p>
+            <h2 id="solutions-title">Digital services for your online world.</h2>
+          </div>
+          <p>
+            Welcome to LifeStyle Solutions, where we help you grow your online business like never before. With digital services, you can take your online presence to the next level, attracting more customers and increasing revenue.
+          </p>
+        </div>
+        <div className="service-grid dark-grid">
+          {solutions.map((solution) => (
+            <article className="service-card dark-card" key={solution.title}>
+              <ArrowUpRight size={28} />
+              <h3>{solution.title}</h3>
+              <p>{solution.copy}</p>
+            </article>
+          ))}
         </div>
       </section>
 
       <section id="contact" className="contact section-dark" aria-labelledby="contact-title">
         <div>
-          <p className="section-label">Contact</p>
-          <h2 id="contact-title">Bring Lifestyle Entertainment LLC into your next event.</h2>
+          <p className="section-label">Contact Us</p>
+          <h2 id="contact-title">Get in touch.</h2>
           <p>
-            Share the date, city, estimated guest count, and the kind of night you want to create.
+            Looking for top-notch entertainment for your next event? Contact LifeStyle Entertainment today for any question about events or any service request.
           </p>
         </div>
         <div className="contact-panel">
           <a href="mailto:info@lifestyleentertainmentllc.com">
             <Mail size={20} /> info@lifestyleentertainmentllc.com
           </a>
-          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm" target="_blank" rel="noreferrer">
-            <ArrowUpRight size={20} /> Current website
+          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/contact-2" target="_blank" rel="noreferrer">
+            <ArrowUpRight size={20} /> Current contact page
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-            <ArrowUpRight size={20} /> Instagram
+          <a href="https://rikoshahoud.wixsite.com/lifestyle-entertainm/event-details" target="_blank" rel="noreferrer">
+            <CalendarDays size={20} /> Event details and registration
           </a>
-          <span><MapPin size={20} /> Available for private and brand events</span>
+          <span><MapPin size={20} /> Available for event planning and service requests</span>
         </div>
       </section>
     </main>
