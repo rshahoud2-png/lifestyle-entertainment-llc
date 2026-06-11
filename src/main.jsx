@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUpRight, CalendarDays, Disc3, Instagram, Mail, MapPin, Music2, Sparkles, Star, UsersRound } from 'lucide-react';
+import { ArrowUpRight, CalendarDays, Disc3, Mail, MapPin, Music2, Sparkles, Star, UsersRound } from 'lucide-react';
 import './styles.css';
 
 const services = [
@@ -256,7 +256,7 @@ function App() {
             <ArrowUpRight size={20} /> Current website
           </a>
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-            <Instagram size={20} /> Instagram
+            <ArrowUpRight size={20} /> Instagram
           </a>
           <span><MapPin size={20} /> Available for private and brand events</span>
         </div>
