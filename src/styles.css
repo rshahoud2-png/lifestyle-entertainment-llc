@@ -253,6 +253,11 @@ nav {
   line-height: 1.65;
 }
 
+.section-dark .section-heading p,
+.section-dark .section-label {
+  color: rgba(248, 242, 231, 0.72);
+}
+
 .services,
 .process {
   padding-block: clamp(72px, 10vw, 140px);
@@ -275,6 +280,10 @@ nav {
   line-height: 1.65;
 }
 
+.section-light .section-heading.split p:last-child {
+  color: rgba(23, 18, 14, 0.68);
+}
+
 .service-grid,
 .process-grid {
   display: grid;
@@ -284,11 +293,21 @@ nav {
   border: 1px solid rgba(23, 18, 14, 0.24);
 }
 
+.service-grid.dark-grid {
+  background: rgba(248, 242, 231, 0.18);
+  border-color: rgba(248, 242, 231, 0.18);
+}
+
 .service-card,
 .process-grid article {
   min-height: 270px;
   padding: clamp(22px, 3vw, 36px);
   background: #f3eee4;
+}
+
+.service-card.dark-card {
+  background: #15110e;
+  color: #f8f2e7;
 }
 
 .service-card h3,
@@ -305,6 +324,10 @@ nav {
   margin: 0;
   color: rgba(23, 18, 14, 0.66);
   line-height: 1.6;
+}
+
+.service-card.dark-card p {
+  color: rgba(248, 242, 231, 0.68);
 }
 
 .experience {
